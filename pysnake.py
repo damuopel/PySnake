@@ -112,7 +112,7 @@ while running:
     if head.x == food.x and head.y == food.y:
         food = Food()
         snake.add()
-    if head.x < 0 or head.x > xCells or head.y < 0 or head.y > yCells:
+    if head.x < 0 or head.x > xCells-1 or head.y < 0 or head.y > yCells-1:
         running = False        
     # Check snake collision
     if snake.collision():
