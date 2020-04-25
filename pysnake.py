@@ -16,14 +16,14 @@ screen = pygame.display.set_mode((WIDTH,HEIGTH))
 COLORS = {'k':(0,0,0),'w':(255,255,255),'g':(0,255,0),'r':(255,0,0)}
 
 
-class Snake(self):
-    self.body = []
-    self.length = 0
+class Snake():
     def __init__(self,x,y):
+        self.body = []
+        self.length = 0
         self.x = x
         self.y = y
     def add(self,Square):
-        self.body.append(Square(x,y))
+        self.body.append(Square)
         self.length += 1
     def plot(self):
         for i in range(0,self.length):
@@ -34,16 +34,15 @@ class Snake(self):
                 (iBody.x*xSize,(iBody.y+1)*ySize)]
             pygame.draw.polygon(screen,COLORS['g'],poly,1)
         
-class Square(self):
+class Square():
     def __init__(self,x,y):
         self.x = x
         self.y = y
     
-class Food(self):
-    self.x = random.randint(0,xCells)
-    self.y = random.randint(0,yCells)
+class Food():
     def __init__(self):
-        pass
+        self.x = random.randint(0,xCells)
+        self.y = random.randint(0,yCells)
     def plot(self):
         poly = [(self.x*xSize,self.y*ySize),
                 ((self.x+1)*xSize,self.y*ySize),
@@ -51,8 +50,11 @@ class Food(self):
                 (self.x*xSize,(self.y+1)*ySize)]
         pygame.draw.polygon(screen,COLORS['r'],poly,1)
         
+        
 snake = Snake(xMid,yMid)
 snake.add(Square(xMid,yMid))
+
+food = Food()
 
 running = True
 while running:
